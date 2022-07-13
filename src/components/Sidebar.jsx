@@ -12,7 +12,7 @@ import LocalHospitalIcon from '@mui/icons-material/LocalHospital'
 const Sidebar = () => {
   return (
     <div className='Sidebar'>
-      <SidebarRow src='' title="rohit singh"/>
+      <SidebarRow src='https://media-exp2.licdn.com/dms/image/C4D03AQGHGPFxhTs9MA/profile-displayphoto-shrink_800_800/0/1643270542027?e=1663200000&v=beta&t=KQPpeHGe9gP8sHZcomTSHBbp5K6MBhjKAn1byeGj0Yg' title="rohit singh"/>
 
       <SidebarRow Icon={LocalHospitalIcon} title="Covid-19 Information Center"/>
 
