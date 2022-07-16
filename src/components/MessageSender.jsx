@@ -12,6 +12,10 @@ export function MessageSender() {
 
     const handleSubmit=(e)=>{
         e.preventDefault()
+
+        
+        setInput("")
+        setImageurl("")
     }
   return (
     <div className='messageSender'>
