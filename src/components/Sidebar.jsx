@@ -1,5 +1,5 @@
 
-import React from 'react'
+import React, { useContext } from 'react'
 import SidebarRow from './SidebarRow'
 import ExpandMoreOutlinedIcon from '@mui/icons-material/ExpandMoreOutlined'
 import StorefrontOutlinedIcon from '@mui/icons-material/StorefrontOutlined'
@@ -8,11 +8,13 @@ import EmojiFlagsIcon from '@mui/icons-material/EmojiFlags'
 import PeopleIcon from '@mui/icons-material/People'
 import VideoLibraryIcon from '@mui/icons-material/VideoLibrary'
 import LocalHospitalIcon from '@mui/icons-material/LocalHospital'
+import { AppContext } from './AppContext'
 
 const Sidebar = () => {
+  const {isAuth}= useContext(AppContext)
   return (
     <div className='Sidebar'>
-      <SidebarRow src='https://media-exp2.licdn.com/dms/image/C4D03AQGHGPFxhTs9MA/profile-displayphoto-shrink_800_800/0/1643270542027?e=1663200000&v=beta&t=KQPpeHGe9gP8sHZcomTSHBbp5K6MBhjKAn1byeGj0Yg' title="rohit singh"/>
+      <SidebarRow src={isAuth.photoURL} title={isAuth.displayName}/>
 
       <SidebarRow Icon={LocalHospitalIcon} title="Covid-19 Information Center"/>
 

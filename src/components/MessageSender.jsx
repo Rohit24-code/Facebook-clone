@@ -4,15 +4,26 @@ import PhotoLibraryIcon from '@mui/icons-material/PhotoLibrary'
 import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon'
 import React, { useState } from 'react'
 import './MessageSender.css'
-
+import { useContext } from 'react'
+import { AppContext } from './AppContext'
+import firebase from "firebase/compat/app";
+import db from './firebase'
 export function MessageSender() {
 
+  const {isAuth} = useContext(AppContext)
+  console.log(isAuth.photoURL)
     const [input,setInput] = useState("")
     const [imageurl,setImageurl] = useState("")
 
     const handleSubmit=(e)=>{
         e.preventDefault()
 
+        db.collection('posts').add({
+          message: input,
+          timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+          profilePIC: isAuth.photoURL,
+          image: imageurl
+        })
         
         setInput("")
         setImageurl("")
@@ -21,9 +32,9 @@ export function MessageSender() {
     <div className='messageSender'>
       
       <div className="messageSender_top">
-        <Avatar/>
+        <Avatar src={isAuth.photoURL}/>
         <form >
-        <input value={input} onChange={(e)=>setInput(e.target.value)} className='messageSender_input' type="text" placeholder={"what's on your mind"} />
+        <input value={input} onChange={(e)=>setInput(e.target.value)} className='messageSender_input' type="text" placeholder={`what's on your mind ${isAuth.displayName}`} />
         <input value={imageurl} onChange={(e)=>setImageurl(e.target.value)}  type="text" placeholder='image url' />
         <button onClick={handleSubmit} type="submit">
             Hidden submit
